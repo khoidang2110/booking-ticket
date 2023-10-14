@@ -1,5 +1,5 @@
 import React from "react";
-// import "./DatVe.css";
+import "./style.css";
 import UserInfo from "./UserInfo";
 import TotalBooking from "./TotalBooking";
 import TicketPick from "./TicketPick";
