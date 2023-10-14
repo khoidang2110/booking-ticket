@@ -153,7 +153,7 @@
   }
   
   .bgMovie {
-      background: url(../src/banner.jpg) no-repeat center;
+      background: url(../banner.jpg) no-repeat center;
       background-size: cover;
       -webkit-background-size: cover;
       -moz-background-size: cover;
