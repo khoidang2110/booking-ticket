@@ -1,0 +1,167 @@
+@font-face {
+    font-family: "fontGame";
+    src: url("../font/Pony.ttf");
+  }
+  
+  .bookingMovie {
+    font-family: "fontGame";
+  }
+  .container {
+      display: -webkit-flex;
+      display: -webkit-box;
+      display: -moz-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -moz-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+  }
+  h1 {
+    font-size: 2.9em;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 4px 3px 1px rgba(0, 0, 0, 0.22);
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 0.8em 1vw 0.9em;
+    font-family: "Source Sans Pro", sans-serif;
+  }
+  ul.seat_w3ls {
+    margin: 2em 0;
+  }
+  li.smallBox {
+    text-align: left;
+    display: inline-block;
+    margin-right: 1em;
+    color: #fff;
+  }
+  .smallBox::before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .greenBox::before {
+    content: "";
+    background: Green;
+  }
+  .redBox::before {
+    content: "";
+    background: Red;
+  }
+  .emptyBox::before {
+    content: "";
+    box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0),
+      0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+    -moz-box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0),
+      0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+    -webkit-box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0),
+      0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+    background-color: #fff;
+  }
+  element.style {
+    overflow-x: auto;
+  }
+  .txt-center {
+    text-align: center;
+  }
+  td {
+      width: 40px;
+      font-weight: 600;
+      font-size: 1em;
+      padding-top: 7px;
+      height: 24px;
+      color: #fff;
+  }
+  
+  input[type=checkbox] {
+    width: 13px;
+    margin-right: 14px;
+    cursor: pointer;
+  }
+  input[type=checkbox]:checked:before {
+    background-color: Green;
+    font-size: 15px;
+  }
+  input[type=checkbox]:before {
+    content: "";
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    border: 3px solid #ff9800;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    -moz-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    -webkit-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color: #ffffff;
+  }
+  
+  .screen {
+      width: 100%;
+      background: #ff9800;
+      margin: 2em 0;
+  }
+  h2 {
+    color: white;
+  }
+  label {
+    color: white;
+  }
+  .result {
+    color: white;
+  }
+  h2.wthree {
+      padding: 0.8em;
+      font-size: 1.2em;
+      color: white;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 7px;
+      word-spacing: 10px;
+  }
+  button {
+      background: #f5f5f5;
+      border: none;
+      color: #000;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 10px;
+      font-size: 1em;
+      letter-spacing: 1px;
+      font-family: 'Source Sans Pro', sans-serif;
+      cursor: pointer;
+  }
+  element.style {
+      overflow-x: auto;
+  }
+  .displayerBoxes {
+      margin-top: 2em;
+  }
+  .Displaytable {
+      text-align: center;
+  }
+  
+  .bgMovie {
+      background: url(../src/banner.jpg) no-repeat center;
+      background-size: cover;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      -ms-background-size: cover;
+      background-attachment: fixed;
+      font-family: 'Source Sans Pro', sans-serif;
+  }
+  .seatVGap {
+    height: 40px;
+  }
