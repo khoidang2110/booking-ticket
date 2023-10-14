@@ -76,6 +76,8 @@ export default function TicketPick({data}) {
    //updateState(true);
 
    dispatch(setSelect(true));
+   dispatch(seatSelected(arrDat))
+ dispatch(seatPicker(user.id,arrDat))
    //khi chon het ghe
 console.log("e.target.disabled",e.target.disabled)
 e.target.checked=false;
