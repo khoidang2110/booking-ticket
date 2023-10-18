@@ -1,12 +1,21 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import DatVe from "./component/DatVe";
-import './App.css'
+import "./App.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Header from "./component/Header/Header";
+import DatVeBaiHai from "./page/DatVeBaiHai/DatVeBaiHai";
+import DatVeBaiMot from "./page/DatVeBaiMot/DatVeBaiMot";
 function App() {
   return (
-    <>
-      <DatVe />
-    </>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/datvebaimot" element={<DatVeBaiMot/>} />
+        <Route path="/datvebaihai" element={<DatVeBaiHai />} />
+      </Routes>
+
+    </BrowserRouter>
+    
   );
 }
 

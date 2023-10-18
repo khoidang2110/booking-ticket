@@ -1,6 +1,6 @@
 import React, { createRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelect, setUser } from "../redux/action/ticket";
+import { setSelect, setUser } from "../../redux/action/ticket";
 
 export default function UserInfo({updateState}) {
   console.log("onload userinfo")

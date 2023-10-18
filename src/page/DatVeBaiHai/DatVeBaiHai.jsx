@@ -1,13 +1,13 @@
 import React from "react";
 import "./style.css";
 import UserInfo from "./UserInfo";
-import TotalBooking from "./TotalBooking";
-import TicketPick from "./TicketPick";
+import TotalBooking from "./TotalBookingHai";
+import TicketPick from "./TicketPickHai";
 import { useDispatch, useSelector } from "react-redux";
-import { setData } from "../redux/action/ticket";
-export default function DatVe() {
-  let data = useSelector((state) => state.data);
-  let user = useSelector((state)=> state.user)
+import { setData } from "../../redux/action/ticket";
+export default function DatVeBaiHai() {
+  let data = useSelector((state) => state.ticketTwoReducer.data);
+  let user = useSelector((state)=> state.ticketTwoReducer.user)
   console.log("lay data ve, datve", data);
  // const dispatch = useDispatch();
 
@@ -30,7 +30,7 @@ export default function DatVe() {
   // updateState(true);
   return (
     <div className="bgMovie ">
-      <h1>Movie Seat Selection</h1>
+      <h1 className="mt-0">Movie Seat Selection</h1>
       <div className="container">
         <div className="w3ls-reg">
           <UserInfo  />

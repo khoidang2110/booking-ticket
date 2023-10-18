@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { seatPicker, seatSelected, setData, setSelect, setUser } from "../redux/action/ticket";
+import { seatPicker, seatSelected, setData, setSelect, setUser } from "../../redux/action/ticket";
 
-export default function TicketPick({data}) {
-  let startSelect = useSelector((state)=> state.startSelect)
+export default function TicketPickHai({data}) {
+  let startSelect = useSelector((state)=> state.ticketTwoReducer.startSelect)
   console.log("ticket pick toggle select",startSelect)
 
   // let data = useSelector((state) => state.data);
   // console.log("lay data ve",data)
-  let user = useSelector((state)=> state.user)
+  let user = useSelector((state)=> state.ticketTwoReducer.user)
   
   const dispatch = useDispatch();
   // console.log(data[1].danhSachGhe[1]);
@@ -39,8 +39,9 @@ export default function TicketPick({data}) {
   };
   
  //let  numberOfSeat = user.numberOfSeat*1+1;
- let  numberOfSeat = user.numberOfSeat;
- console.log("numberOfSeat",numberOfSeat)
+
+let  numberOfSeat = user.numberOfSeat;
+ //console.log("numberOfSeat",numberOfSeat)
  let arrDat = []
 
  

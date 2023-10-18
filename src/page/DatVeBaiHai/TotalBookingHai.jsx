@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-export default function TotalBooking({ user }) {
+export default function TotalBookingHai({ user }) {
   console.log("user", user);
   console.log("is arr check ",Array.isArray(user))
-  let seatSelected = useSelector((state)=> state.seatSelected)
+  let seatSelected = useSelector((state)=> state.ticketTwoReducer.seatSelected)
   //console.log("arr",user.seats)
  // 
 let renderList = " "

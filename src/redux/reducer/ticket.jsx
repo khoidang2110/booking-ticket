@@ -1,4 +1,4 @@
-import data from "../../danhSachGhe.json";
+import data from "../../Data/danhSachGhe.json";
 import {
   ADD_USER,
   SEAT_PICKER,
@@ -27,7 +27,7 @@ const initialState = {
   seatSelected:[]
 };
 
-export let ticketReducer = (state = initialState, { type, payload }) => {
+export let ticketTwoReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_USER: {
       // return { ...state, user: payload };
