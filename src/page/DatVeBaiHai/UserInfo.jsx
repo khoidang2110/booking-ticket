@@ -22,7 +22,7 @@ export default function UserInfo({updateState}) {
     const user = { name, numberOfSeat,seats, id };
     console.log(user);
     dispatch(setUser(user));
-    dispatch(setSelect(false));
+    //dispatch(setSelect(false));
   };
   return (
     <div>

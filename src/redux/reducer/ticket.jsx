@@ -1,4 +1,5 @@
 import data from "../../Data/danhSachGhe.json";
+import { setSelect } from "../action/ticket";
 import {
   ADD_USER,
   SEAT_PICKER,
@@ -9,29 +10,30 @@ import {
 
 const initialState = {
   data: data,
-  user: {
-    name: "",
-    numberOfSeat: 0,
-    seats: "",
-    id: "",
-  },
   users: [
     {
-      name: "",
-      numberOfSeat: 0,
-      seats: "",
+      name: "Ha",
+      numberOfSeat: 3,
+      seats: "A1,A2,A3",
+      id: "",
+    },
+    {
+      name: "Khoi",
+      numberOfSeat: 2,
+      seats: "B2,B3",
       id: "",
     },
   ],
   startSelect: true,
-  seatSelected:[]
+  seatSelected: ['A1','A2','A3','B2','B3'],
 };
 
 export let ticketTwoReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_USER: {
       // return { ...state, user: payload };
-      return { ...state, users: [...state.users, payload], user: payload };
+      // return { ...state, users: [...state.users, payload], user: payload };
+      return { ...state, users: [...state.users, payload] };
     }
     case START_SELECT: {
       return { ...state, startSelect: payload };
@@ -40,24 +42,28 @@ export let ticketTwoReducer = (state = initialState, { type, payload }) => {
       return { ...state, data: payload };
     }
     case SEAT_PICKER: {
+      const newSate = {...state}
       const { id, updateData } = payload;
 
       //   return (state.users.map((item) =>
       //   item.id === id ? { ...item, seats:updateData } : item,
 
       // ));
-      let buyer = state.users.map((item) =>
-        item.id === id ? { ...item, seats: updateData } : item
+      let buyer = newSate.users.find((item) =>
+        item.id === id 
       );
+      buyer.seats = updateData;
+      state = newSate
       return {
-        ...state, user: buyer
-       // ...state, users: [...state.users, buyer]
-        //...state, buyer
-       
+        //cap nhat duoc user, nhung chi 1 nguoi
+        //...state, user: buyer
+
+       // ...state, users: [...state.users, buyer],
+       ...state
       };
     }
     case SEAT_SELECTED: {
-      return { ...state, seatSelected: payload };
+      return { ...state, seatSelected: [...seatSelected,...payload] };
     }
     default:
       return state;

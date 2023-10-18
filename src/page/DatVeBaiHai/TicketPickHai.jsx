@@ -1,55 +1,64 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { seatPicker, seatSelected, setData, setSelect, setUser } from "../../redux/action/ticket";
+import {
+  seatPicker,
+  seatSelected,
+  setData,
+  setSelect,
+  setUser,
+} from "../../redux/action/ticket";
 
-export default function TicketPickHai({data}) {
-  let startSelect = useSelector((state)=> state.ticketTwoReducer.startSelect)
-  console.log("ticket pick toggle select",startSelect)
-
+export default function TicketPickHai({ data, setKeyNumber }) {
+  let startSelect = useSelector((state) => state.ticketTwoReducer.startSelect);
+  console.log("ticket pick toggle select", startSelect);
+let  seatSelected = useSelector((state)=> state.ticketTwoReducer.seatSelected)
   // let data = useSelector((state) => state.data);
   // console.log("lay data ve",data)
-  let user = useSelector((state)=> state.ticketTwoReducer.user)
-  
+  let users = useSelector((state) => state.ticketTwoReducer.users);
+
   const dispatch = useDispatch();
   // console.log(data[1].danhSachGhe[1]);
   //console.log(data.danhSachGhe.daDat ? data.danhSachGhe.daDat : '')
 
   const updateState = (toggleValue) => {
-    const newState = data.map(row => {
+    const newState = data.map((row) => {
       // 👇️ if id equals 2, update country property
-      if (row.hang!=="" ) {
-       // return {...danhSachGhe, daDat: true};
-       return row.danhSachGhe.map((item)=>{
-       // console.log("keys",Object.keys(item).findIndex(e=>e=="daDat"))
-          if(Object.keys(item).findIndex(e=>e=="daDat")){
-            return {...item, daDat: toggleValue};
+      if (row.hang !== "") {
+        // return {...danhSachGhe, daDat: true};
+        return row.danhSachGhe.map((item) => {
+          // console.log("keys",Object.keys(item).findIndex(e=>e=="daDat"))
+          if (Object.keys(item).findIndex((e) => e == "daDat")) {
+            return { ...item, daDat: toggleValue };
           }
-         return item;
-        })
+          return item;
+        });
       }
-  
+
       // 👇️ otherwise return the object as is
-     
+
       return row;
     });
-  console.log("newsate", newState)
- // console.log("getdata",newState[1].danhSachGhe[1].daDat)
-  
+    console.log("newsate", newState);
+    // console.log("getdata",newState[1].danhSachGhe[1].daDat)
+
     dispatch(setData(newState));
   };
-  
- //let  numberOfSeat = user.numberOfSeat*1+1;
 
-let  numberOfSeat = user.numberOfSeat;
- //console.log("numberOfSeat",numberOfSeat)
- let arrDat = []
+  //let  numberOfSeat = user.numberOfSeat*1+1;
+  console.log("users", users);
+  let user = users.find((item) => item.seats == "");
 
- 
+  console.log("tìm user de lay so ghe", user);
+
+  let numberOfSeat = user ? user.numberOfSeat : "";
+
+  //console.log("numberOfSeat",numberOfSeat)
+  let arrDat = [];
+  let checked = false;
   let handlePickSeat = (e) => {
-    
-    console.log("pick")
-   // console.log("e",e.target.value);
-  
+    console.log("pick");
+    // console.log("e",e.target.value);
+
     // const name = nameInput.current.value;
     // const numberOfSeat = numberSeatInput.current.value;
 
@@ -58,63 +67,81 @@ let  numberOfSeat = user.numberOfSeat;
     // console.log(user);
 
     // dispatch(setUser(user));
-   
-   if (e.target.checked&& numberOfSeat>0 ){
-   
-    numberOfSeat--
-    console.log("e.target.checked",e.target.checked)
-    console.log("so ghe", numberOfSeat)
-    console.log("soghe vua chon",e.target.value);
-    arrDat.push(e.target.value)
-    console.log("mang tam - bam dat",arrDat)
-    console.log("id nguoi dat ve ",user.id)
-    console.log("e.target",e.target)
-  // e.target.disabled=true
 
- 
-   }else if(e.target.checked&&numberOfSeat==0){
-   // dispatch(setUser(data.danhSachGhe.daDat=true));
-   //updateState(true);
+    if (e.target.checked && numberOfSeat > 0) {
+      numberOfSeat--;
+      console.log("e.target.checked", e.target.checked);
+      console.log("so ghe", numberOfSeat);
+      console.log("soghe vua chon", e.target.value);
+      arrDat.push(e.target.value);
+      console.log("mang tam - bam dat", arrDat);
+      console.log("id nguoi dat ve ", user.id);
+      console.log("e.target", e.target);
+      // e.target.disabled=true
+    } else if (e.target.checked && numberOfSeat == 0) {
+      // dispatch(setUser(data.danhSachGhe.daDat=true));
+      //updateState(true);
 
-   dispatch(setSelect(true));
-   dispatch(seatSelected(arrDat))
- dispatch(seatPicker(user.id,arrDat))
-   //khi chon het ghe
-console.log("e.target.disabled",e.target.disabled)
-e.target.checked=false;
-  }else 
-  // if(e.target.checked==false)
-  {
-    numberOfSeat++
-    console.log("soghe vua huy",e.target.value);
-    console.log("số ghế",numberOfSeat)
-    const new_arr = arrDat.filter(item => item !== e.target.value);
-    console.log("mang moi bo chon ghe",new_arr)
-    arrDat=new_arr
-    console.log("mang tam - bam huy",arrDat)
+      dispatch(setSelect(true));
+      //dispatch(seatSelected(arrDat));
+      dispatch(seatPicker(user.id, arrDat));
+      //khi chon het ghe
+      console.log("e.target.disabled", e.target.disabled);
+      e.target.checked = false;
+    }
+    // if(e.target.checked==false)
+    else {
+      numberOfSeat++;
+      console.log("soghe vua huy", e.target.value);
+      console.log("số ghế", numberOfSeat);
+      const new_arr = arrDat.filter((item) => item !== e.target.value);
+      console.log("mang moi bo chon ghe", new_arr);
+      arrDat = new_arr;
+      console.log("mang tam - bam huy", arrDat);
 
+      // if (arr.find(item=>item == e.target.value)) {
+      //   // Removes the value from the original array
 
-    // if (arr.find(item=>item == e.target.value)) {
-    //   // Removes the value from the original array
-          
-    //       return true;
-    //   }
-    //   return false;
-
-  } 
-
+      //       return true;
+      //   }
+      //   return false;
+    }
   };
-let updateTextArea  = ()=>{
-console.log("updatetextarea");
-dispatch(seatSelected(arrDat))
- dispatch(seatPicker(user.id,arrDat))
+  let updateTextArea = () => {
+    console.log("bam dat, arrdat",arrDat);
+   
+    dispatch(seatPicker(user.id, arrDat));
+   
+   //dispatch(seatSelected(arrDat));
+    setKeyNumber();
+    //dispatch(setSelect(true));
+  };
+  let newData = [];
+  newData = data.map((row)=>{
+    if (row.hang !== ""){
+      return row.danhSachGhe.map((item)=>{
 
-}
-  const renderList = data.map((row) => {
+        let indexBookingSeat = seatSelected.findIndex(
+          (index) => index === item.soGhe
+        );
+    
+        if (indexBookingSeat !== -1) {
+          item.daDat = true;
+        }
+        return ;
+      })
+    }
+  
+     
+   }
+ 
+   )
+   console.log("newdt",newData)
+  const renderList = data.map((row, key1) => {
     if (row.hang == "") {
       return (
         // render 1 2 3 4...
-        <tr>
+        <tr key={key1}>
           <td>{row.hang}</td>
           {row.danhSachGhe.map((item) => {
             if (item.soGhe == 6) {
@@ -135,7 +162,7 @@ dispatch(seatSelected(arrDat))
       return (
         <>
           <tr className="seatVGap"></tr>
-          <tr>
+          <tr key={key1}>
             <td>{row.hang}</td>
 
             {row.danhSachGhe.map((item) => {
@@ -145,14 +172,15 @@ dispatch(seatSelected(arrDat))
                     <td></td>
                     <td>
                       <input
-                      // checked="false"
-                      
+                        // checked="false"
+
                         onClick={handlePickSeat}
                         type="checkbox"
                         className="seats"
                         defaultValue={item.soGhe}
+                        defaultChecked={checked}
                         // disabled={item.daDat}
-                        disabled={startSelect}
+                        disabled={item.daDat}
                         readOnly
                       />
                     </td>
@@ -163,11 +191,11 @@ dispatch(seatSelected(arrDat))
               return (
                 <td>
                   <input
-                  onClick={handlePickSeat}
+                    onClick={handlePickSeat}
                     type="checkbox"
                     className="seats"
                     defaultValue={item.soGhe}
-                    disabled={startSelect}
+                    disabled={item.daDat}
                   />
                 </td>
               );
@@ -187,11 +215,11 @@ dispatch(seatSelected(arrDat))
                 <td></td>
                 <td>
                   <input
-                  onClick={handlePickSeat}
+                    onClick={handlePickSeat}
                     type="checkbox"
                     className="seats"
                     defaultValue={item.soGhe}
-                    disabled={startSelect}
+                    disabled={item.daDat}
                   />
                 </td>
               </>
@@ -200,11 +228,11 @@ dispatch(seatSelected(arrDat))
           return (
             <td>
               <input
-              onClick={handlePickSeat}
+                onClick={handlePickSeat}
                 type="checkbox"
                 className="seats"
                 defaultValue={item.soGhe}
-                disabled={startSelect}
+                disabled={item.daDat}
               />
             </td>
           );
@@ -212,6 +240,9 @@ dispatch(seatSelected(arrDat))
       </tr>
     );
   });
+  console.log("render.ist",renderList)
+
+
   return (
     <div>
       <ul className="seat_w3ls">
@@ -221,14 +252,19 @@ dispatch(seatSelected(arrDat))
       </ul>
 
       <div className="seatStructure txt-center" style={{ overflowX: "auto" }}>
-        { startSelect==false &&<p id="notification" className="screen"> 
-          <b
-            style={{ marginBottom: 0, background: "#ff9800", letterSpacing: 1 }}
-          >
-            Please Select your Seats NOW!
-          </b>
-        </p> }
-        
+        {startSelect == false && (
+          <p id="notification" className="screen">
+            <b
+              style={{
+                marginBottom: 0,
+                background: "#ff9800",
+                letterSpacing: 1,
+              }}
+            >
+              Please Select your Seats NOW!
+            </b>
+          </p>
+        )}
 
         <table id="seatsBlock">
           <tbody>{renderList}</tbody>
@@ -236,9 +272,7 @@ dispatch(seatSelected(arrDat))
         <div className="screen">
           <h2 className="wthree">Screen this way</h2>
         </div>
-        <button onClick={updateTextArea} >
-          Confirm Selection
-        </button>
+        <button onClick={updateTextArea}>Confirm Selection</button>
       </div>
     </div>
   );

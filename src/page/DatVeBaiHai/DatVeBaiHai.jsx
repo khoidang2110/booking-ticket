@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import UserInfo from "./UserInfo";
 import TotalBooking from "./TotalBookingHai";
@@ -7,8 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setData } from "../../redux/action/ticket";
 export default function DatVeBaiHai() {
   let data = useSelector((state) => state.ticketTwoReducer.data);
-  let user = useSelector((state)=> state.ticketTwoReducer.user)
+  let users = useSelector((state)=> state.ticketTwoReducer.users)
   console.log("lay data ve, datve", data);
+  const [keyNumber,setKeyNumber]=useState(Math.random())
+  console.log(Math.random())
  // const dispatch = useDispatch();
 
   // const updateState = (toggleValue) => {
@@ -34,8 +36,8 @@ export default function DatVeBaiHai() {
       <div className="container">
         <div className="w3ls-reg">
           <UserInfo  />
-          <TicketPick data={data}/>
-          <TotalBooking user={user}/>
+          <TicketPick data={data} setKeyNumber={setKeyNumber}/>
+          <TotalBooking users={users} keyNumber={keyNumber}/>
         </div>
       </div>
     </div>
