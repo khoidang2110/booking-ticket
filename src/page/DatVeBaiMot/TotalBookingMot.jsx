@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cancelSeatAction } from "../../redux/action/datvebaimot";
 
-export default function TotalBookingMot() {
+export default function TotalBookingMot({setKeyNumber}) {
   let danhSachGheDaDat = useSelector(
     (state) => state.ticketOneReducer.danhSachGheDaDat
   );
@@ -35,8 +35,9 @@ export default function TotalBookingMot() {
                   <td className="text-warning">{item.gia}</td>
                   <td>
                     <button onClick={()=>{
-                   
+                   setKeyNumber(Math.random())
                      dispatch(cancelSeatAction(item.soGhe))
+
                     }}>Huỷ</button>
                   </td>
                 </tr>

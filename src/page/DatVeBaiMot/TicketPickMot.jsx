@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { bookSeatAction } from "../../redux/action/datvebaimot";
 import seatData from "../../Data/danhSachGhe.json";
 
-export default function TicketPickMot() {
+export default function TicketPickMot({keyNumber}) {
 
   let danhSachGheDaDat = useSelector(
     (state) => state.ticketOneReducer.danhSachGheDaDat
@@ -12,6 +12,7 @@ export default function TicketPickMot() {
   );
  
   const dispatch = useDispatch();
+  
 
   const renderList = seatData.map((row,index) => {
     if (row.hang == "") {
@@ -42,7 +43,7 @@ export default function TicketPickMot() {
             checked = true;
           }
           return (
-            <td key={index}>
+            <td key={index+keyNumber}>
           <input
                 type="checkbox"
             

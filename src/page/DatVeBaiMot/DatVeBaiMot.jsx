@@ -10,7 +10,7 @@ import TicketPickMot from "./TicketPickMot";
 import TotalBookingMot from "./TotalBookingMot";
 
 export default function DatVeBaiMot() {
-
+const [keyNumber,setKeyNumber]=useState(0);
  
 
   //   const newState = data.map((row) => {
@@ -37,10 +37,10 @@ export default function DatVeBaiMot() {
       <div className="container">
         <div className="row">
           <div className="col-7">
-          <TicketPickMot />
+          <TicketPickMot keyNumber={keyNumber}/>
           </div>
           <div className="col-5">
-          <TotalBookingMot  />
+          <TotalBookingMot setKeyNumber={setKeyNumber} />
           </div>
         
          
