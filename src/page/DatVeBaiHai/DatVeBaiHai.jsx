@@ -8,9 +8,9 @@ import { setData } from "../../redux/action/ticket";
 export default function DatVeBaiHai() {
   let data = useSelector((state) => state.ticketTwoReducer.data);
   let users = useSelector((state)=> state.ticketTwoReducer.users)
-  console.log("lay data ve, datve", data);
+  //console.log("lay data ve, datve", data);
   const [keyNumber,setKeyNumber]=useState(11)
-  console.log("keyNumber",keyNumber)
+  //console.log("keyNumber",keyNumber)
  // const dispatch = useDispatch();
 
   // const updateState = (toggleValue) => {

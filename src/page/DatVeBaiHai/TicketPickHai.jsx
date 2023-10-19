@@ -7,6 +7,7 @@ import {
   setSelect,
   setUser,
 } from "../../redux/action/ticket";
+import { message } from "antd";
 
 export default function TicketPickHai({ data, setKeyNumber,keyNumber }) {
   let startSelect = useSelector((state) => state.ticketTwoReducer.startSelect);
@@ -67,53 +68,64 @@ let  seatSelected = useSelector((state)=> state.ticketTwoReducer.seatSelected)
     // console.log(user);
 
     // dispatch(setUser(user));
+if(user){
+  if (e.target.checked && numberOfSeat > 0) {
+    numberOfSeat--;
+    console.log("e.target.checked", e.target.checked);
+    console.log("so ghe", numberOfSeat);
+    console.log("soghe vua chon", e.target.value);
+    arrDat.push(e.target.value);
+    console.log("mang tam - bam dat", arrDat);
+    console.log("id nguoi dat ve ", user.id);
+    console.log("e.target", e.target);
+    // e.target.disabled=true
+  } else if (e.target.checked && numberOfSeat == 0) {
+    // dispatch(setUser(data.danhSachGhe.daDat=true));
+    //updateState(true);
 
-    if (e.target.checked && numberOfSeat > 0) {
-      numberOfSeat--;
-      console.log("e.target.checked", e.target.checked);
-      console.log("so ghe", numberOfSeat);
-      console.log("soghe vua chon", e.target.value);
-      arrDat.push(e.target.value);
-      console.log("mang tam - bam dat", arrDat);
-      console.log("id nguoi dat ve ", user.id);
-      console.log("e.target", e.target);
-      // e.target.disabled=true
-    } else if (e.target.checked && numberOfSeat == 0) {
-      // dispatch(setUser(data.danhSachGhe.daDat=true));
-      //updateState(true);
+   // dispatch(setSelect(true));
+    //dispatch(seatSelected(arrDat));
+    //dispatch(seatPicker(user.id, arrDat));
+    //khi chon het ghe
+    console.log("e.target.disabled", e.target.disabled);
+    e.target.checked = false;
+  }
+  // if(e.target.checked==false)
+  else {
+    numberOfSeat++;
+    console.log("soghe vua huy", e.target.value);
+    console.log("số ghế", numberOfSeat);
+    const new_arr = arrDat.filter((item) => item !== e.target.value);
+    console.log("mang moi bo chon ghe", new_arr);
+    arrDat = new_arr;
+    console.log("mang tam - bam huy", arrDat);
 
-      dispatch(setSelect(true));
-      //dispatch(seatSelected(arrDat));
-      dispatch(seatPicker(user.id, arrDat));
-      //khi chon het ghe
-      console.log("e.target.disabled", e.target.disabled);
-      e.target.checked = false;
-    }
-    // if(e.target.checked==false)
-    else {
-      numberOfSeat++;
-      console.log("soghe vua huy", e.target.value);
-      console.log("số ghế", numberOfSeat);
-      const new_arr = arrDat.filter((item) => item !== e.target.value);
-      console.log("mang moi bo chon ghe", new_arr);
-      arrDat = new_arr;
-      console.log("mang tam - bam huy", arrDat);
+    // if (arr.find(item=>item == e.target.value)) {
+    //   // Removes the value from the original array
 
-      // if (arr.find(item=>item == e.target.value)) {
-      //   // Removes the value from the original array
+    //       return true;
+    //   }
+    //   return false;
+  }
+}else{
+  message.warning("vui lòng nhập tên và số lượng ghế")
+  e.target.checked = false;
+}
+  
 
-      //       return true;
-      //   }
-      //   return false;
-    }
   };
   let updateTextArea = () => {
     console.log("bam dat, arrdat",arrDat);
-   
+   if(user){
     dispatch(seatPicker(user.id, arrDat));
    
-   dispatch(setSeatSelected(arrDat));
-    setKeyNumber(Math.random());
+    dispatch(setSeatSelected(arrDat));
+     setKeyNumber(Math.random());
+   }
+   else {
+    message.warning("vui lòng chọn ghế")
+   }
+   
     //dispatch(setSelect(true));
   };
   let newData = [];

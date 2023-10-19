@@ -1,9 +1,10 @@
 import React, { createRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelect, setUser } from "../../redux/action/ticket";
+import { message } from "antd";
 
 export default function UserInfo({updateState}) {
-  console.log("onload userinfo")
+  //console.log("onload userinfo")
  // updateState(true);
   const dispatch = useDispatch();
   
@@ -14,15 +15,26 @@ export default function UserInfo({updateState}) {
  
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    //console.log("name",nameInput.current.value)
+   // console.log("number",numberSeatInput.current.value)
+    if(nameInput.current.value && numberSeatInput.current.value){
+      const name = nameInput.current.value;
+      const numberOfSeat = numberSeatInput.current.value;
+     const seats = "";
+     const id = Math.floor(Math.random() * 100)
+      const user = { name, numberOfSeat,seats, id };
+      //console.log(user);
+      dispatch(setUser(user));
+      //dispatch(setSelect(false));
+      numberSeatInput.current.value="";
+      nameInput.current.value="";
+    }
+    else{
+      message.warning("vui lòng nhập thông tin")
+    }
+ 
 
-    const name = nameInput.current.value;
-    const numberOfSeat = numberSeatInput.current.value;
-   const seats = "";
-   const id = Math.floor(Math.random() * 100)
-    const user = { name, numberOfSeat,seats, id };
-    console.log(user);
-    dispatch(setUser(user));
-    //dispatch(setSelect(false));
+    
   };
   return (
     <div>
