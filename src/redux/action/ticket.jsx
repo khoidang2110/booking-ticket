@@ -19,7 +19,7 @@ export const seatPicker = (id,updateData) => ({
     id,updateData,
   }
 });
-export const seatSelected = (seatSelected) => ({
+export const setSeatSelected = (seatSelected) => ({
   type: SEAT_SELECTED,
   payload:
     seatSelected,

@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   seatPicker,
-  seatSelected,
   setData,
+  setSeatSelected,
   setSelect,
   setUser,
 } from "../../redux/action/ticket";
 
-export default function TicketPickHai({ data, setKeyNumber }) {
+export default function TicketPickHai({ data, setKeyNumber,keyNumber }) {
   let startSelect = useSelector((state) => state.ticketTwoReducer.startSelect);
   console.log("ticket pick toggle select", startSelect);
 let  seatSelected = useSelector((state)=> state.ticketTwoReducer.seatSelected)
@@ -112,8 +112,8 @@ let  seatSelected = useSelector((state)=> state.ticketTwoReducer.seatSelected)
    
     dispatch(seatPicker(user.id, arrDat));
    
-   //dispatch(seatSelected(arrDat));
-    setKeyNumber();
+   dispatch(setSeatSelected(arrDat));
+    setKeyNumber(Math.random());
     //dispatch(setSelect(true));
   };
   let newData = [];
@@ -141,7 +141,7 @@ let  seatSelected = useSelector((state)=> state.ticketTwoReducer.seatSelected)
     if (row.hang == "") {
       return (
         // render 1 2 3 4...
-        <tr key={key1}>
+        <tr key={key1+keyNumber}>
           <td>{row.hang}</td>
           {row.danhSachGhe.map((item) => {
             if (item.soGhe == 6) {
@@ -162,7 +162,7 @@ let  seatSelected = useSelector((state)=> state.ticketTwoReducer.seatSelected)
       return (
         <>
           <tr className="seatVGap"></tr>
-          <tr key={key1}>
+          <tr key={key1+keyNumber}>
             <td>{row.hang}</td>
 
             {row.danhSachGhe.map((item) => {

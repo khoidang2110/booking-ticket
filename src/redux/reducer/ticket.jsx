@@ -12,20 +12,15 @@ const initialState = {
   data: data,
   users: [
     {
-      name: "Ha",
-      numberOfSeat: 3,
-      seats: "A1,A2,A3",
-      id: "",
-    },
-    {
-      name: "Khoi",
+      name: "Khim",
       numberOfSeat: 2,
-      seats: "B2,B3",
+      seats: "A11,A12",
       id: "",
     },
+   
   ],
   startSelect: true,
-  seatSelected: ['A1','A2','A3','B2','B3'],
+  seatSelected: ['A11','A12'],
 };
 
 export let ticketTwoReducer = (state = initialState, { type, payload }) => {
@@ -63,7 +58,8 @@ export let ticketTwoReducer = (state = initialState, { type, payload }) => {
       };
     }
     case SEAT_SELECTED: {
-      return { ...state, seatSelected: [...seatSelected,...payload] };
+    return { ...state, seatSelected: [...state.seatSelected,...payload] };
+    // return {...state,payload}
     }
     default:
       return state;

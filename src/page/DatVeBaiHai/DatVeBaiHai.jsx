@@ -9,8 +9,8 @@ export default function DatVeBaiHai() {
   let data = useSelector((state) => state.ticketTwoReducer.data);
   let users = useSelector((state)=> state.ticketTwoReducer.users)
   console.log("lay data ve, datve", data);
-  const [keyNumber,setKeyNumber]=useState(Math.random())
-  console.log(Math.random())
+  const [keyNumber,setKeyNumber]=useState(11)
+  console.log("keyNumber",keyNumber)
  // const dispatch = useDispatch();
 
   // const updateState = (toggleValue) => {
@@ -36,7 +36,7 @@ export default function DatVeBaiHai() {
       <div className="container">
         <div className="w3ls-reg">
           <UserInfo  />
-          <TicketPick data={data} setKeyNumber={setKeyNumber}/>
+          <TicketPick data={data} setKeyNumber={setKeyNumber} keyNumber={keyNumber}/>
           <TotalBooking users={users} keyNumber={keyNumber}/>
         </div>
       </div>
